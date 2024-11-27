@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://omk1fk8ytqxg"]
 
-[ext_resource type="Script" path="res://scenes/environment/EnvironmentManager.gd" id="1_nvjr2"]
+[ext_resource type="Script" uid="uid://dbbv57upjxu6o" path="res://scenes/environment/EnvironmentManager.gd" id="1_nvjr2"]
 
 [node name="Environment" type="Node2D"]
 script = ExtResource("1_nvjr2")
