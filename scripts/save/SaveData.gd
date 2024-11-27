@@ -10,5 +10,5 @@ static func load_from(path: String) -> SaveData:
 	obj.path = path
 	return obj
 
-func save_to() -> void:
+func save() -> void:
 	ResourceSaver.save(self, path)
