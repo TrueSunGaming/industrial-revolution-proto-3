@@ -1,10 +1,14 @@
 class_name SaveData extends Resource
 
+@export var path: String
+
 func make_active() -> void:
 	global.save = self
 
 static func load_from(path: String) -> SaveData:
-	return ResourceLoader.load(path, "SaveData")
+	var obj: SaveData = ResourceLoader.load(path, "SaveData")
+	obj.path = path
+	return obj
 
-func save_to(path: String) -> void:
+func save_to() -> void:
 	ResourceSaver.save(self, path)
