@@ -16,7 +16,3 @@ static func load_from(path: String) -> SaveData:
 
 func save() -> void:
 	ResourceSaver.save(self, path)
-
-func save_and_quit() -> void:
-	save()
-	global.get_tree().quit()
