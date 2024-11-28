@@ -1,18 +1,24 @@
 class_name EnvironmentManager extends Node2D
 
 var active_env: Node2D
-var active_env_scene: PackedScene
+var active_env_id: String
+var env_id: String:
+	set(val):
+		env_id = val
+		reload_env()
 
 func _ready() -> void:
 	refs.env = self
 
-func set_env(scene: PackedScene) -> void:
-	active_env_scene = scene
-	
-	reload_env()
-
 func reload_env() -> void:
 	if active_env: active_env.queue_free()
 	
-	active_env = active_env_scene.instantiate()
+	var data := EnvironmentData.get_data(env_id)
+	if not data:
+		OS.alert("Failed to load environment " + env_id)
+		return global.save_and_quit()
+	
+	refs.player.global_position = data.spawn_position
+	active_env = data.scene.instantiate()
+	active_env_id = env_id
 	add_child(active_env)
