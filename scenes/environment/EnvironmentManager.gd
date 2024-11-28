@@ -13,7 +13,7 @@ func _ready() -> void:
 func reload_env() -> void:
 	if active_env: active_env.queue_free()
 	
-	var data := EnvironmentData.get_data(env_id)
+	var data := EnvironmentData.get_loaded(env_id)
 	if not data:
 		OS.alert("Failed to load environment " + env_id)
 		return global.save_and_quit()

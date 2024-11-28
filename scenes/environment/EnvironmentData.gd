@@ -1,11 +1,11 @@
 class_name EnvironmentData extends Resource
 
-static var map: Dictionary[StringName, EnvironmentData]
+static var loaded: Dictionary[StringName, EnvironmentData]
 
 @export var id: StringName:
 	set(val):
 		id = val
-		map[id] = self
+		loaded[id] = self
 @export var scene: PackedScene
 @export var default_spawn_position: Vector2
 @export var travel_spawn_positions: Dictionary[StringName, Vector2]
@@ -16,5 +16,5 @@ var spawn_position: Vector2:
 		
 		return default_spawn_position
 
-static func get_data(id: StringName) -> EnvironmentData:
-	return map.get(id)
+static func get_loaded(id: StringName) -> EnvironmentData:
+	return loaded.get(id)
