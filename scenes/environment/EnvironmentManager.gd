@@ -1,8 +1,8 @@
 class_name EnvironmentManager extends Node2D
 
 var active_env: Node2D
-var active_env_id: String
-var env_id: String:
+var active_env_id: StringName
+var env_id: StringName:
 	set(val):
 		env_id = val
 		reload_env()
