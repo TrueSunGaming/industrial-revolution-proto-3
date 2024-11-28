@@ -9,6 +9,8 @@ func make_active() -> void:
 
 static func load_from(path: String) -> SaveData:
 	var obj: SaveData = ResourceLoader.load(path, "SaveData")
+	if not obj: obj = SaveData.new()
+	
 	obj.path = path
 	return obj
 
