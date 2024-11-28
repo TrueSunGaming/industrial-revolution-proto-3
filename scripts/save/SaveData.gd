@@ -2,6 +2,8 @@ class_name SaveData extends Resource
 
 @export var path: String
 
+@export var last_environment := "factory"
+
 func make_active() -> void:
 	refs.save = self
 
