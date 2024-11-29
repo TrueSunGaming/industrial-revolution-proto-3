@@ -18,3 +18,5 @@ texture = ExtResource("2_73vur")
 shape = SubResource("CircleShape2D_udhlv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
