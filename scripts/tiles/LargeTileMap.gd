@@ -62,3 +62,16 @@ func set_if_not_occupied(pos: Vector2i, id: int, centered := false) -> bool:
 		return true
 	
 	return false
+
+func serialize() -> Dictionary[Vector2i, TileSaveData]:
+	var res: Dictionary[Vector2i, TileSaveData]
+	
+	for i in get_used_cells():
+		res[i] = TileSaveData.new()
+		res[i].source_id = get_cell_source_id(i)
+		res[i].atlas_coords = get_cell_atlas_coords(i)
+	
+	return res
+
+func deserialize(data: Dictionary[Vector2i, TileSaveData]) -> void:
+	for i in data.keys(): set_cell(i, data[i].source_id, data[i].atlas_coords)
