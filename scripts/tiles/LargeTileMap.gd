@@ -2,11 +2,16 @@ class_name LargeTileMap extends TileMapLayer
 
 var _tileset_size_cache: Dictionary[int, Vector2i]
 
-func _ready() -> void:
-	set_large_tile(Vector2i.ZERO, 0, true)
-	set_large_tile(Vector2i.ZERO, 0, false)
-	
-	print(get_tile_origin(Vector2i(1, 1)))
+var save_data: Dictionary[Vector2i, TileSaveData]:
+	get:
+		var res: Dictionary[Vector2i, TileSaveData]
+		
+		for i in get_used_cells():
+			res[i] = TileSaveData.new()
+			res[i].source_id = get_cell_source_id(i)
+			res[i].atlas_coords = get_cell_atlas_coords(i)
+		
+		return res
 
 func get_tile_size(id: int) -> Vector2i:
 	if id in _tileset_size_cache: return _tileset_size_cache[id]
@@ -63,15 +68,5 @@ func set_if_not_occupied(pos: Vector2i, id: int, centered := false) -> bool:
 	
 	return false
 
-func serialize() -> Dictionary[Vector2i, TileSaveData]:
-	var res: Dictionary[Vector2i, TileSaveData]
-	
-	for i in get_used_cells():
-		res[i] = TileSaveData.new()
-		res[i].source_id = get_cell_source_id(i)
-		res[i].atlas_coords = get_cell_atlas_coords(i)
-	
-	return res
-
-func deserialize(data: Dictionary[Vector2i, TileSaveData]) -> void:
+func load_save(data: Dictionary[Vector2i, TileSaveData]) -> void:
 	for i in data.keys(): set_cell(i, data[i].source_id, data[i].atlas_coords)

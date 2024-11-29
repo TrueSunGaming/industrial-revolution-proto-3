@@ -3,6 +3,10 @@ class_name SaveData extends Resource
 @export var path: String
 
 @export var last_environment := "factory"
+@export var factory_data: Dictionary[Vector2i, TileSaveData] = {}
+
+func _init() -> void:
+	print((get_script() as Script).get_script_property_list())
 
 func make_active() -> void:
 	refs.save = self
@@ -15,4 +19,8 @@ static func load_from(path: String) -> SaveData:
 	return obj
 
 func save() -> void:
-	ResourceSaver.save(self, path)
+	var err := ResourceSaver.save(self, path)
+	if err != OK:
+		OS.alert("Failed to save game: " + str(err))
+	else:
+		print("Game saved")
