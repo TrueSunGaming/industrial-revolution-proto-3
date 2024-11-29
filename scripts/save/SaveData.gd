@@ -5,9 +5,6 @@ class_name SaveData extends Resource
 @export var last_environment := "factory"
 @export var factory_data: Dictionary[Vector2i, TileSaveData] = {}
 
-func _init() -> void:
-	print((get_script() as Script).get_script_property_list())
-
 func make_active() -> void:
 	refs.save = self
 
