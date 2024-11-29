@@ -10,4 +10,4 @@ script = ExtResource("1_0l3op")
 [node name="Environment" parent="." instance=ExtResource("2_iunhe")]
 
 [node name="Player" parent="." instance=ExtResource("2_4ohs7")]
-base_movement_speed = 128.0
+base_movement_speed = 320.0
