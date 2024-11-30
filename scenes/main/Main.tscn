@@ -13,3 +13,7 @@ metadata/_custom_type_script = ExtResource("2_q24mn")
 
 [node name="Player" parent="." instance=ExtResource("2_4ohs7")]
 base_movement_speed = 320.0
+min_zoom = 0.5
+max_zoom = 2.0
+zoom_factor = 1.15
+zoom_time = 0.1
