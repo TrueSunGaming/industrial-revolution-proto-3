@@ -8,11 +8,11 @@ enum {
 @export var filters: Array[StringName]
 @export var mode := BLACKLIST
 
-static var ALL:
+static var ALL: Filter:
 	get:
 		return Filter.new(BLACKLIST, [])
 
-static var NONE:
+static var NONE: Filter:
 	get:
 		return Filter.new(WHITELIST, [])
 
