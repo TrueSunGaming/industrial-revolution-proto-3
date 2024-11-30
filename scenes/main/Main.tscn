@@ -9,6 +9,7 @@ script = ExtResource("1_0l3op")
 
 [node name="Environment" type="Node2D" parent="."]
 script = ExtResource("2_q24mn")
+fallback_env = &"factory"
 metadata/_custom_type_script = ExtResource("2_q24mn")
 
 [node name="Player" parent="." instance=ExtResource("2_4ohs7")]
