@@ -6,7 +6,7 @@ enum {
 }
 
 @export var filters: Array[StringName]
-@export var mode := WHITELIST
+@export var mode := BLACKLIST
 
 func _init(mode := BLACKLIST, filters: Array[StringName] = []) -> void:
 	self.mode = mode
