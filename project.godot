@@ -21,6 +21,11 @@ global="*res://scripts/global.gd"
 refs="*res://scripts/refs.gd"
 loads="*res://scripts/loads.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [input]
 
 move_left={
