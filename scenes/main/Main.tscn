@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dm3jndxa4hk0p" path="res://scenes/main/Main.gd" id="1_0l3op"]
 [ext_resource type="PackedScene" uid="uid://ck4wwqscy3tjb" path="res://scenes/objects/player/Player.tscn" id="2_4ohs7"]
-[ext_resource type="PackedScene" uid="uid://omk1fk8ytqxg" path="res://scenes/environment/EnvironmentManager.tscn" id="2_iunhe"]
+[ext_resource type="Script" uid="uid://dbbv57upjxu6o" path="res://scenes/environment/EnvironmentManager.gd" id="2_q24mn"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0l3op")
 
-[node name="Environment" parent="." instance=ExtResource("2_iunhe")]
-fallback_env = &"factory"
+[node name="Environment" type="Node2D" parent="."]
+script = ExtResource("2_q24mn")
+metadata/_custom_type_script = ExtResource("2_q24mn")
 
 [node name="Player" parent="." instance=ExtResource("2_4ohs7")]
 base_movement_speed = 320.0
