@@ -8,6 +8,14 @@ enum {
 @export var filters: Array[StringName]
 @export var mode := BLACKLIST
 
+static var ALL:
+	get:
+		return Filter.new(BLACKLIST, [])
+
+static var NONE:
+	get:
+		return Filter.new(WHITELIST, [])
+
 func _init(mode := BLACKLIST, filters: Array[StringName] = []) -> void:
 	self.mode = mode
 	self.filters = filters
