@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlciscixwpo2n"]
+
+[ext_resource type="Script" uid="uid://dc6eby0o0bj1j" path="res://scenes/hover-indicator/HoverIndicator.gd" id="1_04y2q"]
+[ext_resource type="Texture2D" uid="uid://dsiltppr5eopd" path="res://scenes/hover-indicator/hover_indicator.svg" id="2_7ai8d"]
+
+[sub_resource type="Animation" id="Animation_7ai8d"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(1, 0.784314, 0, 1), Color(1, 0.848333, 0.3, 1), Color(1, 0.784314, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3pfox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqkrn"]
+_data = {
+&"RESET": SubResource("Animation_3pfox"),
+&"pulse": SubResource("Animation_7ai8d")
+}
+
+[node name="HoverIndicator" type="Node2D"]
+script = ExtResource("1_04y2q")
+
+[node name="TopLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_7ai8d")
+centered = false
+
+[node name="TopRight" type="Sprite2D" parent="."]
+texture = ExtResource("2_7ai8d")
+centered = false
+offset = Vector2(-25, 0)
+flip_h = true
+
+[node name="BottomLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_7ai8d")
+centered = false
+offset = Vector2(0, -25)
+flip_v = true
+
+[node name="BottomRight" type="Sprite2D" parent="."]
+texture = ExtResource("2_7ai8d")
+centered = false
+offset = Vector2(-25, -25)
+flip_h = true
+flip_v = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sqkrn")
+}
+autoplay = "pulse"

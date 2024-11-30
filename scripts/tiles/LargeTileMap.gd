@@ -14,6 +14,7 @@ var save_data: Dictionary[Vector2i, TileSaveData]:
 		return res
 
 func get_tile_size(id: int) -> Vector2i:
+	if id == -1: return Vector2i(1, 1)
 	if id in _tileset_size_cache: return _tileset_size_cache[id]
 	
 	var source := tile_set.get_source(id) as TileSetAtlasSource
