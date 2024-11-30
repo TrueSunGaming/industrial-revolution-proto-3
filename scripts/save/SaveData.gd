@@ -1,9 +1,9 @@
 class_name SaveData extends Resource
 
-@export var path: String
+var path: String
 
-@export var last_environment := "factory"
-@export var factory_data: Dictionary[Vector2i, TileSaveData] = {}
+@export var last_environment: StringName = "factory"
+@export var factory_data: Dictionary[Vector2i, int] = {}
 
 func make_active() -> void:
 	refs.save = self
