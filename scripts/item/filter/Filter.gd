@@ -8,6 +8,10 @@ enum {
 @export var filters: Array[StringName]
 @export var mode := WHITELIST
 
+func _init(mode := BLACKLIST, filters: Array[StringName] = []) -> void:
+	self.mode = mode
+	self.filters = filters
+
 func check(key: StringName) -> bool:
 	match mode:
 		WHITELIST: return filters.has(key)
