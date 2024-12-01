@@ -8,6 +8,8 @@ class_name Player extends CharacterBody2D
 
 @onready var _goal_zoom: float = $Camera2D.zoom.x
 
+var inventory: ItemInventory
+
 func _ready() -> void:
 	refs.player = self
 
@@ -24,3 +26,8 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	_goal_zoom *= zoom_factor ** (int(Input.is_action_pressed("zoom_in")) - int(Input.is_action_pressed("zoom_out")))
 	_goal_zoom = clampf(_goal_zoom, min_zoom, max_zoom)
+
+func save() -> void:
+	if not refs.save: return
+	
+	refs.save.player_inventory = inventory.items

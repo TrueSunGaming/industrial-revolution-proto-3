@@ -20,6 +20,10 @@ class_name ItemInventory extends Resource
 
 var item_quantities: Dictionary[StringName, int]
 
+func _init(capacity := -1, filter := Filter.ALL) -> void:
+	self.capacity = capacity
+	self.filter = filter
+
 func reload_item_quantities() -> void:
 	item_quantities = {}
 	for i: ItemStack in items.values():

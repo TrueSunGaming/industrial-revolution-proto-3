@@ -6,6 +6,7 @@ func _ready() -> void:
 func save_and_quit() -> void:
 	if refs.save:
 		if refs.env: refs.env.save()
+		if refs.player: refs.player.save()
 		
 		refs.save.save()
 	
