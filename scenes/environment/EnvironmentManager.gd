@@ -35,5 +35,5 @@ func reload_env() -> void:
 func save() -> void:
 	if not refs.save: return
 	
-	refs.save.last_environment = active_env_id
+	refs.save.last_environment = env_id
 	if active_env and "save" in active_env and typeof(active_env.save) == TYPE_CALLABLE: active_env.save()
