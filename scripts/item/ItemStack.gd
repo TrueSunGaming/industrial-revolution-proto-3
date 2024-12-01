@@ -7,12 +7,18 @@ class_name ItemStack extends Resource
 		item = ItemData.get_loaded(item_id)
 
 @export var count: int
+@export var stack_size_override := -1
 
 var item: ItemData
 
+var stack_size: int:
+	get:
+		if not item: return 0
+		return item.stack_size if stack_size_override < 0 else mini(item.stack_size, stack_size_override)
+
 var full: bool:
 	get:
-		return count >= item.stack_size
+		return count >= stack_size
 
 var empty: bool:
 	get:
@@ -23,7 +29,7 @@ func _init(item_id := &"", count := 0) -> void:
 	self.count = count
 
 func give(qty: int) -> int:
-	var added := mini(item.stack_size - count, qty)
+	var added := mini(stack_size - count, qty)
 	count += added
 	return added
 
@@ -51,4 +57,4 @@ func take_from(qty: int, other: ItemStack, allow_mixing_items := false) -> int:
 func merge(other: ItemStack, allow_mixing_items := false) -> void:
 	if full: return
 	
-	take_from(item.stack_size - count, other, allow_mixing_items)
+	take_from(stack_size - count, other, allow_mixing_items)
