@@ -25,12 +25,12 @@ func _init(fluid_id := &"", amount := 0) -> void:
 	self.fluid_id = fluid_id
 	self.amount = amount
 
-func give(qty: int) -> int:
+func give(qty: float) -> float:
 	var added := mini(capacity - amount, qty)
 	amount += added
 	return added
 
-func give_to(qty: int, other: FluidStack, allow_mixing_fluids := false) -> int:
+func give_to(qty: float, other: FluidStack, allow_mixing_fluids := false) -> float:
 	if not allow_mixing_fluids and fluid_id != other.fluid_id: return 0
 	
 	var taken := take(qty)
@@ -43,12 +43,12 @@ func give_to(qty: int, other: FluidStack, allow_mixing_fluids := false) -> int:
 	
 	return given
 
-func take(qty: int) -> int:
+func take(qty: float) -> float:
 	var taken := maxi(amount, qty)
 	amount -= taken
 	return taken
 
-func take_from(qty: int, other: FluidStack, allow_mixing_fluids := false) -> int:
+func take_from(qty: float, other: FluidStack, allow_mixing_fluids := false) -> float:
 	return other.give_to(qty, self, allow_mixing_fluids)
 
 func merge(other: FluidStack, allow_mixing_fluids := false) -> void:
