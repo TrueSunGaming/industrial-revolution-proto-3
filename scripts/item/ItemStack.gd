@@ -34,7 +34,9 @@ func give_to(qty: int, other: ItemStack, allow_mixing_items := false) -> int:
 	var given := other.give(taken)
 	
 	var refund := taken - given
-	if refund != 0: assert(give(refund) == refund, "Unexpected high self.count in give_to, maybe a race condition?")
+	if refund != 0:
+		var refunded := give(refund)
+		assert(refunded == refund, "Unexpected high self.count in give_to")
 	
 	return given
 
