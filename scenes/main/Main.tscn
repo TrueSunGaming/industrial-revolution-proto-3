@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkoyg72peqi6o"]
+[gd_scene load_steps=5 format=3 uid="uid://dkoyg72peqi6o"]
 
 [ext_resource type="Script" uid="uid://dm3jndxa4hk0p" path="res://scenes/main/Main.gd" id="1_0l3op"]
 [ext_resource type="PackedScene" uid="uid://ck4wwqscy3tjb" path="res://scenes/objects/player/Player.tscn" id="2_4ohs7"]
 [ext_resource type="Script" uid="uid://dbbv57upjxu6o" path="res://scenes/environment/EnvironmentManager.gd" id="2_q24mn"]
+[ext_resource type="PackedScene" uid="uid://drqf0tkqp0fa4" path="res://scenes/ui/ui.tscn" id="4_gyg6b"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0l3op")
@@ -18,3 +19,5 @@ min_zoom = 0.5
 max_zoom = 2.0
 zoom_factor = 1.15
 zoom_time = 0.1
+
+[node name="UI" parent="." instance=ExtResource("4_gyg6b")]
