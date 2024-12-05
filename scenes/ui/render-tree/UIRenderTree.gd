@@ -8,7 +8,7 @@ static var loaded: Dictionary[StringName, UIRenderTree]
 		id = val
 		loaded[id] = self
 
-@export var children: Array[UIRenderTree]
+@export var children: Array[StringName]
 
 func create_node() -> Control:
 	return Control.new()
@@ -18,7 +18,11 @@ func assemble_node_tree(hidden := false) -> Control:
 	if hidden: node.hide()
 	
 	for i in children:
-		node.add_child(i.assemble_node_tree())
+		if i not in loaded:
+			push_warning("Could not find UIRenderTree with id " + i)
+			continue
+		
+		node.add_child(get_loaded(i).assemble_node_tree())
 	
 	return node
 
