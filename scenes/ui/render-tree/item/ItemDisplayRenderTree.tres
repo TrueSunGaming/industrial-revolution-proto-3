@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SceneUIRenderTree" load_steps=3 format=3 uid="uid://djw7n7fdeh3wf"]
+
+[ext_resource type="PackedScene" uid="uid://q5r6xw83sguw" path="res://scenes/ui/render-tree/item/ItemDisplay.tscn" id="2_7v8oa"]
+[ext_resource type="Script" uid="uid://cbs3waumv3u54" path="res://scenes/ui/render-tree/SceneUIRenderTree.gd" id="2_h84ij"]
+
+[resource]
+script = ExtResource("2_h84ij")
+scene = ExtResource("2_7v8oa")
+id = &"item_display"
+children = Array[StringName]([])
+metadata/_custom_type_script = ExtResource("2_h84ij")
