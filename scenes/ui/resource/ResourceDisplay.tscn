@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://q5r6xw83sguw"]
+
+[ext_resource type="Script" uid="uid://dfgnua41tgv1i" path="res://scenes/ui/resource/ResourceDisplay.gd" id="1_0f3vq"]
+[ext_resource type="Script" uid="uid://b3mhaduslwqgv" path="res://scripts/resource/ResourceStack.gd" id="2_qnhlu"]
+[ext_resource type="Script" uid="uid://bexamp2v1a14f" path="res://scenes/ui/resource/CountDisplay.gd" id="2_th6my"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkutk"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+
+[sub_resource type="Resource" id="Resource_lciwo"]
+script = ExtResource("2_qnhlu")
+resource_id = &""
+max_quantity_override = -1
+allow_overflow = false
+allow_negative = false
+quantity = 0
+metadata/_custom_type_script = ExtResource("2_qnhlu")
+
+[node name="ResourceDisplay" type="PanelContainer"]
+offset_right = 38.0
+offset_bottom = 38.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lkutk")
+script = ExtResource("1_0f3vq")
+stack = SubResource("Resource_lciwo")
+metadata/_custom_type_script = ExtResource("1_0f3vq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 1
+
+[node name="CountDisplay" type="Control" parent="."]
+z_index = 1
+layout_mode = 2
+script = ExtResource("2_th6my")
+metadata/_custom_type_script = ExtResource("2_th6my")
+
+[connection signal="quantity_changed" from="." to="CountDisplay" method="_on_resource_display_quantity_changed"]
+[connection signal="resource_changed" from="." to="." method="_on_resource_changed"]

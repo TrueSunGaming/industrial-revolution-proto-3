@@ -4,7 +4,7 @@ var path: String
 
 @export var last_environment := &"factory"
 @export var factory_data: Dictionary[Vector2i, int] = {}
-@export var player_inventory: Dictionary[int, ItemStack] = {}
+@export var player_inventory: Array[ResourceStack]
 
 func make_active() -> void:
 	refs.save = self

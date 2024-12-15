@@ -8,7 +8,7 @@ class_name Player extends CharacterBody2D
 
 @onready var _goal_zoom: float = $Camera2D.zoom.x
 
-var inventory: ItemInventory
+var inventory: Storage
 
 func _ready() -> void:
 	refs.player = self
@@ -30,4 +30,4 @@ func _input(event: InputEvent) -> void:
 func save() -> void:
 	if not refs.save: return
 	
-	refs.save.player_inventory = inventory.items
+	refs.save.player_inventory = inventory.content
