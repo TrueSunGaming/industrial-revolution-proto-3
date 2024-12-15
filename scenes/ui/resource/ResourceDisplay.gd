@@ -22,8 +22,8 @@ signal quantity_changed
 		resource_changed.emit()
 
 func _on_resource_changed() -> void:
-	if stack and stack.item:
+	if stack and stack.resource_data and stack.resource_data.texture:
 		show()
-		$MarginContainer/TextureRect.texture = stack.item.texture
+		$MarginContainer/TextureRect.texture = stack.resource_data.texture
 	else:
 		hide()
