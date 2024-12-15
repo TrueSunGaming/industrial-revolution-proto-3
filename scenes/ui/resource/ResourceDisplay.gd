@@ -23,7 +23,12 @@ signal quantity_changed
 
 func _on_resource_changed() -> void:
 	if stack and stack.resource_data and stack.resource_data.texture:
-		show()
-		$MarginContainer/TextureRect.texture = stack.resource_data.texture
+		var img := stack.resource_data.texture.get_image()
+		img.resize(32, 32, Image.INTERPOLATE_NEAREST)
+		$MarginContainer/TextureRect.texture = ImageTexture.create_from_image(img)
+		
+		$CountDisplay.show()
+		$MarginContainer/TextureRect.show()
 	else:
-		hide()
+		$CountDisplay.hide()
+		$MarginContainer/TextureRect.hide()

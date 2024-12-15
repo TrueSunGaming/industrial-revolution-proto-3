@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResourceData" load_steps=3 format=3 uid="uid://p1m2ppeg21bj"]
+
+[ext_resource type="Script" uid="uid://chejxg4or48bt" path="res://scripts/resource/ResourceData.gd" id="1_ur3fi"]
+[ext_resource type="Texture2D" uid="uid://dpusqbm1k14qx" path="res://scenes/environment/factory/tiles/assembler_1.svg" id="2_qlape"]
+
+[resource]
+script = ExtResource("1_ur3fi")
+id = &"assembler_1"
+name = "Assembling Machine MK1"
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec."
+texture = ExtResource("2_qlape")
+color = Color(0, 0, 0, 1)
+type = 0
+max_quantity = 50
+metadata/_custom_type_script = ExtResource("1_ur3fi")

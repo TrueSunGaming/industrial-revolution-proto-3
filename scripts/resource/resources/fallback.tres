@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResourceData" load_steps=3 format=3 uid="uid://b673sj68w6bjc"]
+
+[ext_resource type="Script" uid="uid://chejxg4or48bt" path="res://scripts/resource/ResourceData.gd" id="1_ew1ep"]
+[ext_resource type="Texture2D" uid="uid://cudg5hxs6gg0t" path="res://scenes/environment/factory/metal_tile.svg" id="2_dlfb7"]
+
+[resource]
+script = ExtResource("1_ew1ep")
+id = &""
+name = "Fallback Resource"
+description = "This resource was not found."
+texture = ExtResource("2_dlfb7")
+color = Color(0, 0, 0, 1)
+type = 0
+max_quantity = -1
+metadata/_custom_type_script = ExtResource("1_ew1ep")
