@@ -1,27 +1,27 @@
 class_name Filter extends Resource
 
-enum {
+enum Mode {
 	WHITELIST,
 	BLACKLIST
 }
 
 @export var filters: Array[StringName]
-@export var mode := BLACKLIST
+@export var mode := Mode.BLACKLIST
 
 static var ALL: Filter:
 	get:
-		return Filter.new(BLACKLIST, [])
+		return Filter.new(Mode.BLACKLIST, [])
 
 static var NONE: Filter:
 	get:
-		return Filter.new(WHITELIST, [])
+		return Filter.new(Mode.WHITELIST, [])
 
-func _init(mode := BLACKLIST, filters: Array[StringName] = []) -> void:
+func _init(mode := Mode.BLACKLIST, filters: Array[StringName] = []) -> void:
 	self.mode = mode
 	self.filters = filters
 
 func check(key: StringName) -> bool:
 	match mode:
-		WHITELIST: return filters.has(key)
-		BLACKLIST: return not filters.has(key)
+		Mode.WHITELIST: return filters.has(key)
+		Mode.BLACKLIST: return not filters.has(key)
 		_: return false

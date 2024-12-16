@@ -14,3 +14,6 @@ func save_and_quit() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST: save_and_quit()
+
+func safe_disconnect(sig: Signal, fn: Callable) -> void:
+	if sig.is_connected(fn): sig.disconnect(fn)

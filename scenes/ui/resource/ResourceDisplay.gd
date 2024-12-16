@@ -1,4 +1,4 @@
-class_name ResourceDisplay extends Container
+class_name ResourceDisplay extends PanelContainer
 
 signal resource_changed
 signal quantity_changed

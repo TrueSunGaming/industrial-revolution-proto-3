@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxmtklsbl66ur"]
+
+[ext_resource type="Script" uid="uid://brhc4jfo5pptn" path="res://scenes/ui/resource/storage/StorageDisplay.gd" id="1_t5r2l"]
+
+[node name="StorageDisplay" type="GridContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 10
+script = ExtResource("1_t5r2l")

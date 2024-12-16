@@ -2,32 +2,46 @@ class_name Storage extends StorageAccess
 
 @export var allow_solids: bool
 @export var allow_fluids: bool
-@export var content: Array[ResourceStack]
-@export var slots: int
+@export var slots := -1
 @export var filter := Filter.ALL
 @export var remove_empty := true
+
+@export var content: Array[ResourceStack]:
+	set(val):
+		if content == val: return
+		content = val
+		fully_modified.emit()
 
 var full: bool:
 	get:
 		return slots >= 0 and content.size() >= slots
 
+func get_content() -> Array[ResourceStack]:
+	return content
+
 func can_add(stack: ResourceStack) -> bool:
-	return filter.check(stack.resource_id)
+	if stack.resource_data.type == ResourceData.ResourceType.SOLID and not allow_solids: return false
+	if stack.resource_data.type == ResourceData.ResourceType.FLUID and not allow_fluids: return false
+	if not filter.check(stack.resource_id): return false
+	
+	return true
 
 func add(stack: ResourceStack) -> int:
 	if not can_add(stack): return 0
 	
 	var remaining := stack.quantity
 	
-	for i in content:
+	for i in content.size():
 		if remaining <= 0: break
-		if i.resource_id != stack.resource_id: continue
-		remaining -= i.add(remaining)
+		if content[i].resource_id != stack.resource_id: continue
+		remaining -= content[i].add(remaining)
+		modified.emit(i)
 	
 	while remaining > 0 and not full:
 		var rs := ResourceStack.new(stack.resource_id, remaining)
 		if rs.max_quantity <= 0: break
 		content.push_back(rs)
+		appended.emit()
 		remaining -= rs.quantity
 	
 	return stack.quantity - remaining
@@ -35,11 +49,18 @@ func add(stack: ResourceStack) -> int:
 func remove(stack: ResourceStack) -> int:
 	var remaining := stack.quantity
 	
-	for i in content:
+	var remove_count := 0
+	for i in content.size():
 		if remaining <= 0: break
-		if i.resource_id != stack.resource_id: continue
-		if i.quantity > 0: remaining -= i.remove(remaining)
 		
-		if remove_empty and i.quantity <= 0: content.erase(i)
+		var s := content[i - remove_count]
+		if s.resource_id != stack.resource_id: continue
+		if s.quantity > 0:
+			remaining -= s.remove(remaining)
+			modified.emit(i)
+		
+		if remove_empty and s.quantity <= 0:
+			content.remove_at(i)
+			removed.emit(i)
 	
 	return stack.quantity - remaining
