@@ -18,9 +18,9 @@ func _notification(what: int) -> void:
 func safe_disconnect(sig: Signal, fn: Callable) -> void:
 	if sig.is_connected(fn): sig.disconnect(fn)
 
-func reconnect(sig: Signal, from: Object, to: Object, sig_name := sig.get_name()) -> void:
+func reconnect(sig: Callable, from: Object, to: Object, sig_name: String) -> void:
 	if from and sig_name in from and from[sig_name] is Signal:
-		safe_disconnect(from[sig_name], sig.emit)
+		safe_disconnect(from[sig_name], sig)
 	
 	if to and sig_name in to and to[sig_name] is Signal:
-		to[sig_name].connect(sig.emit)
+		to[sig_name].connect(sig)

@@ -6,18 +6,12 @@ const resource_display: PackedScene = preload("res://scenes/ui/resource/Resource
 	set(val):
 		if storage == val: return
 		
-		if storage:
-			global.safe_disconnect(storage.appended, on_appended)
-			global.safe_disconnect(storage.removed, on_removed)
-			global.safe_disconnect(storage.modified, on_modified)
-			global.safe_disconnect(storage.fully_modified, on_fully_modified)
+		global.reconnect(on_appended, storage, val, "appended")
+		global.reconnect(on_removed, storage, val, "removed")
+		global.reconnect(on_modified, storage, val, "modified")
+		global.reconnect(on_fully_modified, storage, val, "fully_modified")
 		
 		storage = val
-		
-		storage.appended.connect(on_appended)
-		storage.removed.connect(on_removed)
-		storage.modified.connect(on_modified)
-		storage.fully_modified.connect(on_fully_modified)
 		
 		on_fully_modified()
 

@@ -7,8 +7,8 @@ signal quantity_changed
 	set(val):
 		if stack == val: return
 		
-		global.reconnect(quantity_changed, stack, val)
-		global.reconnect(resource_changed, stack, val)
+		global.reconnect(quantity_changed.emit, stack, val, "quantity_changed")
+		global.reconnect(resource_changed.emit, stack, val, "quantity_changed")
 		
 		stack = val
 		
