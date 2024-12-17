@@ -9,7 +9,16 @@ class_name Storage extends StorageAccess
 @export var content: Array[ResourceStack]:
 	set(val):
 		if content == val: return
-		content = val
+		content = []
+		
+		var qty_added := 0
+		for i in val:
+			if slots >= 0 and qty_added >= slots: break
+			if not can_add(i): continue
+			
+			content.push_back(i)
+			qty_added += 1
+		
 		fully_modified.emit()
 
 var full: bool:
