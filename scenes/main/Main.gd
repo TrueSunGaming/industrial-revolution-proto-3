@@ -7,4 +7,5 @@ func _ready() -> void:
 	
 	refs.env.env_id = refs.save.last_environment
 	refs.player.inventory = Storage.new()
+	refs.player.inventory.slots = 60
 	refs.player.inventory.content = refs.save.player_inventory

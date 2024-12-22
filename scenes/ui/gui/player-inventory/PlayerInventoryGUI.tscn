@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbfgdav1wbyxm"]
+
+[ext_resource type="PackedScene" uid="uid://dxg6tujebneed" path="res://scenes/ui/gui/GUIWindow.tscn" id="1_ierbp"]
+[ext_resource type="Script" uid="uid://b3m52utqih0nr" path="res://scenes/ui/gui/player-inventory/PlayerInventoryStorageDisplay.gd" id="2_6ny8m"]
+[ext_resource type="Script" uid="uid://brhc4jfo5pptn" path="res://scenes/ui/resource/storage/StorageDisplay.gd" id="2_ead21"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ny8m"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.3, 0.3, 0.3, 1)
+
+[node name="GUIWindow" instance=ExtResource("1_ierbp")]
+
+[node name="Title" parent="PanelContainer/VBoxContainer/Navbar/NavbarContent" index="0"]
+text = "Inventory"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ny8m")
+
+[node name="StorageDisplay" type="GridContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+columns = 10
+script = ExtResource("2_6ny8m")
+metadata/_custom_type_script = ExtResource("2_ead21")

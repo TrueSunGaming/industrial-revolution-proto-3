@@ -20,13 +20,13 @@ var dragging := false
 func _ready() -> void:
 	if title: _title_node.text = title
 
-func _on_close_pressed() -> void:
+func close() -> void:
 	queue_free()
 
 func _on_tree_exiting() -> void:
 	for i in child_windows:
 		i.parent_window = null
-		i._on_close_pressed()
+		i.close()
 	
 	closed.emit()
 

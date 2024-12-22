@@ -1,10 +1,17 @@
 class_name Storage extends StorageAccess
 
+signal capacity_changed
+
 @export var allow_solids: bool
 @export var allow_fluids: bool
-@export var slots := -1
 @export var filter := Filter.ALL
 @export var remove_empty := true
+
+@export var slots := -1:
+	set(val):
+		if slots == val: return
+		slots = val
+		capacity_changed.emit()
 
 @export var content: Array[ResourceStack]:
 	set(val):
