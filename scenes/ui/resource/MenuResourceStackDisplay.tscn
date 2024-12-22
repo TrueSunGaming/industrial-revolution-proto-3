@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://q5r6xw83sguw"]
+
+[ext_resource type="Script" uid="uid://dfgnua41tgv1i" path="res://scenes/ui/resource/MenuResourceStackDisplay.gd" id="1_n7wjf"]
+[ext_resource type="Script" uid="uid://e3f1xsc4we2w" path="res://scenes/ui/resource/ResourceStackDisplay.gd" id="2_80vkl"]
+[ext_resource type="FontFile" uid="uid://o30xn84wnj74" path="res://fonts/Roboto-Regular.ttf" id="3_32gld"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkutk"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="MenuResourceStackDisplay" type="PanelContainer"]
+offset_right = 38.0
+offset_bottom = 38.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lkutk")
+script = ExtResource("1_n7wjf")
+metadata/_custom_type_script = ExtResource("1_n7wjf")
+
+[node name="ResourceStackDisplay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+script = ExtResource("2_80vkl")
+quantity_font = ExtResource("3_32gld")
+metadata/_custom_type_script = ExtResource("2_80vkl")

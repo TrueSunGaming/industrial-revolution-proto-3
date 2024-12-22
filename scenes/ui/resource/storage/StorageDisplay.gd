@@ -1,6 +1,6 @@
 class_name StorageDisplay extends GridContainer
 
-const resource_display: PackedScene = preload("res://scenes/ui/resource/ResourceDisplay.tscn")
+const resource_display: PackedScene = preload("res://scenes/ui/resource/MenuResourceStackDisplay.tscn")
 
 @export var storage: StorageAccess:
 	set(val):
@@ -54,7 +54,7 @@ func on_removed(index: int) -> void:
 	fill_empty()
 
 func on_modified(index: int) -> void:
-	(get_child(index) as ResourceDisplay).stack = storage.get_content()[index]
+	(get_child(index) as MenuResourceStackDisplay).stack = storage.get_content()[index]
 
 func on_fully_modified() -> void:
 	for i in get_children():
