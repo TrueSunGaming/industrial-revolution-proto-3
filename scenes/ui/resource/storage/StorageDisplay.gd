@@ -22,8 +22,16 @@ const resource_display: PackedScene = preload("res://scenes/ui/resource/Resource
 		
 		fill_empty()
 
+@export var fill_full_line := false
+
+var fill_empty_target: int:
+	get:
+		if not fill_full_line: return fill_empty_until
+		
+		return columns * ceili((maxf(storage.get_content().size(), fill_empty_until) + 1) / columns)
+
 func fill_empty() -> void:
-	while fill_empty_until > get_child_count(): add_display(null)
+	while fill_empty_target > get_child_count(): add_display(null)
 
 func add_display(stack: ResourceStack) -> void:
 	var node := resource_display.instantiate()
@@ -31,8 +39,10 @@ func add_display(stack: ResourceStack) -> void:
 	add_child(node)
 
 func on_appended() -> void:
+	fill_empty()
+	
 	var content := storage.get_content()
-	if content.size() - 1 < fill_empty_until: return on_modified(content.size() - 1)
+	if content.size() - 1 < fill_empty_target: return on_modified(content.size() - 1)
 	
 	add_display(content.back())
 

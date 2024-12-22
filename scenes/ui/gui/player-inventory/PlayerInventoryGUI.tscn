@@ -18,13 +18,17 @@ text = "Inventory"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" index="1"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" index="0"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ny8m")
 
 [node name="StorageDisplay" type="GridContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer" index="0"]
 layout_mode = 2
+size_flags_vertical = 0
 columns = 10
 script = ExtResource("2_6ny8m")
+fill_full_line = true
 metadata/_custom_type_script = ExtResource("2_ead21")

@@ -52,6 +52,7 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 0
 
 [node name="Navbar" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
