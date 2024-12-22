@@ -21,6 +21,7 @@ enum ResourceType {
 @export var color: Color
 @export var type: ResourceType
 @export var max_quantity = -1
+@export var tile := data.TileIDs.none
 
 static func get_loaded(id: StringName) -> ResourceData:
 	return loaded.get(id)

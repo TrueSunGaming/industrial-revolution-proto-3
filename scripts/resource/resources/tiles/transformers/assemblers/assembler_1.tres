@@ -12,4 +12,5 @@ texture = ExtResource("2_qlape")
 color = Color(0, 0, 0, 1)
 type = 0
 max_quantity = 50
+tile = 0
 metadata/_custom_type_script = ExtResource("1_ur3fi")
