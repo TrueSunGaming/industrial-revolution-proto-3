@@ -9,27 +9,27 @@ script = ExtResource("2_o30g5")
 [node name="Title" parent="PanelContainer/VBoxContainer/Navbar/NavbarContent" index="0"]
 text = "Debug Menu"
 
-[node name="GiveResource" type="HBoxContainer" parent="PanelContainer/VBoxContainer" index="1"]
+[node name="GiveResource" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/Content" index="0"]
 layout_mode = 2
 
-[node name="ResourceID" type="LineEdit" parent="PanelContainer/VBoxContainer/GiveResource" index="0"]
+[node name="ResourceID" type="LineEdit" parent="PanelContainer/VBoxContainer/ContentMargin/Content/GiveResource" index="0"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 placeholder_text = "Resource ID"
 select_all_on_focus = true
 
-[node name="Quantity" type="LineEdit" parent="PanelContainer/VBoxContainer/GiveResource" index="1"]
+[node name="Quantity" type="LineEdit" parent="PanelContainer/VBoxContainer/ContentMargin/Content/GiveResource" index="1"]
 layout_mode = 2
 placeholder_text = "Qty"
 select_all_on_focus = true
 
-[node name="GiveResourceButton" type="Button" parent="PanelContainer/VBoxContainer/GiveResource" index="2"]
+[node name="GiveResourceButton" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/Content/GiveResource" index="2"]
 layout_mode = 2
 text = "Give Resource"
 
-[node name="WipeInventory" type="Button" parent="PanelContainer/VBoxContainer" index="2"]
+[node name="WipeInventory" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/Content" index="1"]
 layout_mode = 2
 text = "Wipe Inventory"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/GiveResource/GiveResourceButton" to="." method="_on_give_resource_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/WipeInventory" to="." method="_on_wipe_inventory_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ContentMargin/Content/GiveResource/GiveResourceButton" to="." method="_on_give_resource_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ContentMargin/Content/WipeInventory" to="." method="_on_wipe_inventory_pressed"]
