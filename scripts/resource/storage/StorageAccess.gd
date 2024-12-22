@@ -16,3 +16,7 @@ func add(stack: ResourceStack) -> int:
 func remove(stack: ResourceStack) -> int:
 	assert(false, "StorageAccess.remove is abstract.")
 	return 0
+
+func remove_index(idx: int) -> bool:
+	assert(false, "StorageAccess.remove_index is abstract.")
+	return false

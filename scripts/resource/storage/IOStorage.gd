@@ -13,3 +13,7 @@ func add(stack: ResourceStack) -> int:
 
 func remove(stack: ResourceStack) -> int:
 	return output.remove(stack)
+
+func remove_index(idx: int) -> bool:
+	if idx < input.get_content().size(): return input.remove_index(idx)
+	return output.remove_index(idx - input.get_content().size())

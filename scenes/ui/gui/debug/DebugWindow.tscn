@@ -27,9 +27,23 @@ select_all_on_focus = true
 layout_mode = 2
 text = "Give Resource"
 
-[node name="WipeInventory" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/Content" index="1"]
+[node name="SetHand" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ContentMargin/Content" index="1"]
+layout_mode = 2
+
+[node name="Index" type="LineEdit" parent="PanelContainer/VBoxContainer/ContentMargin/Content/SetHand" index="0"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+placeholder_text = "Index"
+select_all_on_focus = true
+
+[node name="SetHandButton" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/Content/SetHand" index="1"]
+layout_mode = 2
+text = "Put in Hand"
+
+[node name="WipeInventory" type="Button" parent="PanelContainer/VBoxContainer/ContentMargin/Content" index="2"]
 layout_mode = 2
 text = "Wipe Inventory"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/ContentMargin/Content/GiveResource/GiveResourceButton" to="." method="_on_give_resource_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ContentMargin/Content/SetHand/SetHandButton" to="." method="_on_set_hand_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/ContentMargin/Content/WipeInventory" to="." method="_on_wipe_inventory_pressed"]

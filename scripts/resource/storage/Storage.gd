@@ -80,3 +80,12 @@ func remove(stack: ResourceStack) -> int:
 			removed.emit(i)
 	
 	return stack.quantity - remaining
+
+func remove_index(idx: int) -> bool:
+	if idx < 0: return false
+	if idx >= content.size(): return false
+	
+	content.remove_at(idx)
+	removed.emit(idx)
+	
+	return true
