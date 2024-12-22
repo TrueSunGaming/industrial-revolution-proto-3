@@ -47,7 +47,9 @@ func on_modified(index: int) -> void:
 	(get_child(index) as ResourceDisplay).stack = storage.get_content()[index]
 
 func on_fully_modified() -> void:
-	for i in get_children(): i.queue_free()
+	for i in get_children():
+		remove_child(i)
+		i.queue_free()
 	for i in storage.get_content(): add_display(i)
 	
 	fill_empty()
