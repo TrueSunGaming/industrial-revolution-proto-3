@@ -27,4 +27,9 @@ select_all_on_focus = true
 layout_mode = 2
 text = "Give Resource"
 
+[node name="WipeInventory" type="Button" parent="PanelContainer/VBoxContainer" index="2"]
+layout_mode = 2
+text = "Wipe Inventory"
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/GiveResource/GiveResourceButton" to="." method="_on_give_resource_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/WipeInventory" to="." method="_on_wipe_inventory_pressed"]
