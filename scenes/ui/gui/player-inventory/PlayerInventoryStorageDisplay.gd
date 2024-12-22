@@ -13,4 +13,4 @@ func update_empty_slots() -> void:
 	update_panel_size()
 
 func update_panel_size() -> void:
-	$"../../../../..".size = Vector2.ZERO
+	%PanelContainer.size = Vector2.ZERO
