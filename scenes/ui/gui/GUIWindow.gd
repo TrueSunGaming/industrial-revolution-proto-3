@@ -2,11 +2,23 @@ class_name GUIWindow extends Control
 
 signal closed
 
+@export var title: String:
+	set(val):
+		if title == val: return
+		title = val
+		
+		if _title_node: _title_node.text = title
+
 var child_windows: Array[GUIWindow]
 var parent_window: GUIWindow
 
 var _drag_start: Vector2
 var dragging := false
+
+@onready var _title_node: Label = $PanelContainer/VBoxContainer/Navbar/NavbarContent/Title
+
+func _ready() -> void:
+	if title: _title_node.text = title
 
 func _on_close_pressed() -> void:
 	queue_free()
