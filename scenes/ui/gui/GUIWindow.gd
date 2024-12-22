@@ -31,12 +31,11 @@ func _on_navbar_gui_input(event: InputEvent) -> void:
 
 func begin_drag() -> void:
 	dragging = true
-	_drag_start = get_local_mouse_position()
+	_drag_start = get_local_mouse_position() - $PanelContainer.position
 
 func end_drag() -> void:
 	dragging = false
 
 func update_drag() -> void:
-	var pos := get_local_mouse_position()
-	$PanelContainer.position += pos - _drag_start
-	_drag_start = pos
+	$PanelContainer.position = get_local_mouse_position() - _drag_start
+	$PanelContainer.global_position = $PanelContainer.global_position.clamp(Vector2.ZERO, get_viewport_rect().size - $PanelContainer.size)
