@@ -94,4 +94,5 @@ shortcut_in_tooltip = false
 text = "X"
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="gui_input" from="PanelContainer/VBoxContainer/Navbar" to="." method="_on_navbar_gui_input"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Navbar/NavbarContent/NavbarRight/Close" to="." method="_on_close_pressed"]
