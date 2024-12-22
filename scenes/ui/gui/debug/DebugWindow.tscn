@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca6t7vi3yy0tx"]
+
+[ext_resource type="PackedScene" uid="uid://dxg6tujebneed" path="res://scenes/ui/gui/GUIWindow.tscn" id="1_n2qax"]
+[ext_resource type="Script" uid="uid://cs4fwhp7fs8wq" path="res://scenes/ui/gui/debug/DebugWindow.gd" id="2_o30g5"]
+
+[node name="GUIWindow" instance=ExtResource("1_n2qax")]
+script = ExtResource("2_o30g5")
+
+[node name="Title" parent="PanelContainer/VBoxContainer/Navbar/NavbarContent" index="0"]
+text = "Debug Menu"
+
+[node name="GiveResource" type="HBoxContainer" parent="PanelContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="ResourceID" type="LineEdit" parent="PanelContainer/VBoxContainer/GiveResource" index="0"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+placeholder_text = "Resource ID"
+select_all_on_focus = true
+
+[node name="Quantity" type="LineEdit" parent="PanelContainer/VBoxContainer/GiveResource" index="1"]
+layout_mode = 2
+placeholder_text = "Qty"
+select_all_on_focus = true
+
+[node name="GiveResourceButton" type="Button" parent="PanelContainer/VBoxContainer/GiveResource" index="2"]
+layout_mode = 2
+text = "Give Resource"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/GiveResource/GiveResourceButton" to="." method="_on_give_resource_pressed"]

@@ -32,8 +32,9 @@ var max_quantity: int:
 		if max_quantity_override >= 0: return max_quantity_override
 		return resource_data.max_quantity if resource_data else 0
 
-func _init(id := &"", qty := 0) -> void:
+func _init(id := &"", qty := 0, allow_over := false) -> void:
 	resource_id = id
+	allow_overflow = allow_over
 	quantity = qty
 
 func add(amount: int) -> int:

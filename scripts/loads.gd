@@ -1,6 +1,7 @@
 extends Node
 
 const player_inventory_gui: PackedScene = preload("res://scenes/ui/gui/player-inventory/PlayerInventoryGUI.tscn")
+const debug_gui: PackedScene = preload("res://scenes/ui/gui/debug/DebugWindow.tscn")
 
 const environments := [
 	"factory"

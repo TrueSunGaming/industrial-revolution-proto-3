@@ -2,8 +2,8 @@ class_name Storage extends StorageAccess
 
 signal capacity_changed
 
-@export var allow_solids: bool
-@export var allow_fluids: bool
+@export var allow_solids := true
+@export var allow_fluids := true
 @export var filter := Filter.ALL
 @export var remove_empty := true
 
