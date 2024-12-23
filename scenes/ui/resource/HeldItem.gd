@@ -1,4 +1,4 @@
-extends ResourceStackDisplay
+class_name HeldItem extends ResourceStackDisplay
 
 func _ready() -> void:
 	global.held_item_changed.connect(func (): stack = global.held_item)
