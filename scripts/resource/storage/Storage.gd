@@ -98,3 +98,28 @@ func craft(recipe_id: StringName, count := 1) -> bool:
 	for i in recipe.products: add(ResourceStack.new(i.resource_id, i.quantity * count, true))
 	
 	return true
+
+func can_hold_product(recipe_id: StringName, count := 1) -> bool:
+	var slots_taken := 0
+	
+	for i in Recipe.get_loaded(recipe_id).products:
+		if not filter.check(i.resource_id): return false
+		if slots < 0: continue
+		
+		var remaining := i.quantity * count
+		
+		for j in content:
+			if remaining <= 0: break
+			if j.resource_id != i.resource_id: continue
+			remaining -= i.max_quantity - i.quantity
+		
+		if remaining <= 0: continue
+		
+		if (slots - content.size() - slots_taken) * i.resource_data.max_quantity < remaining: return false
+		else: slots_taken += ceili(float(i.resource_data.max_quantity) / remaining)
+	
+	return true
+
+func can_craft(recipe_id: StringName, count := 1) -> bool:
+	assert(false, "StorageAccess.can_craft is abstract.")
+	return false
