@@ -17,11 +17,15 @@ signal capacity_changed
 	set(val):
 		if content == val: return
 		content = []
+		counts.clear()
 		
 		var qty_added := 0
 		for i in val:
 			if slots >= 0 and qty_added >= slots: break
 			if not can_add(i): continue
+			
+			if i.resource_id not in counts: counts[i.resource_id] = 0
+			counts[i.resource_id] += i.quantity
 			
 			content.push_back(i)
 			qty_added += 1
@@ -31,6 +35,8 @@ signal capacity_changed
 var full: bool:
 	get:
 		return slots >= 0 and content.size() >= slots
+
+var counts: Dictionary[StringName, int]
 
 func get_content() -> Array[ResourceStack]:
 	return content
@@ -50,15 +56,23 @@ func add(stack: ResourceStack) -> int:
 	for i in content.size():
 		if remaining <= 0: break
 		if content[i].resource_id != stack.resource_id: continue
-		remaining -= content[i].add(remaining)
+		
+		var added := content[i].add(remaining)
+		counts[stack.resource_id] += added
+		remaining -= added
+		
 		modified.emit(i)
 	
 	while remaining > 0 and not full:
 		var rs := ResourceStack.new(stack.resource_id, remaining)
 		if rs.max_quantity <= 0: break
+		
+		if stack.resource_id not in counts: counts[stack.resource_id] = 0
+		counts[stack.resource_id] += rs.quantity
+		remaining -= rs.quantity
+		
 		content.push_back(rs)
 		appended.emit()
-		remaining -= rs.quantity
 	
 	return stack.quantity - remaining
 
@@ -72,7 +86,9 @@ func remove(stack: ResourceStack) -> int:
 		var s := content[i - remove_count]
 		if s.resource_id != stack.resource_id: continue
 		if s.quantity > 0:
-			remaining -= s.remove(remaining)
+			var removed := s.remove(remaining)
+			remaining -= removed
+			counts[stack.resource_id] -= removed
 			modified.emit(i)
 		
 		if remove_empty and s.quantity <= 0:
@@ -85,6 +101,7 @@ func remove_index(idx: int) -> bool:
 	if idx < 0: return false
 	if idx >= content.size(): return false
 	
+	counts[content[idx].resource_id] -= content[idx].quantity
 	content.remove_at(idx)
 	removed.emit(idx)
 	
