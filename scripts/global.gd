@@ -59,10 +59,13 @@ func pipette() -> void:
 	pass
 
 func return_held_item() -> void:
-	if held_item_storage != refs.player.inventory:
+	transfer_held_item(refs.player.inventory)
+
+func transfer_held_item(to: StorageAccess) -> void:
+	if held_item_storage != refs.player.inventory or to != refs.player.inventory:
 		var item := held_item
 		held_item_storage.remove_index(held_item_index)
-		refs.player.inventory.add(item)
+		to.add(item)
 	
 	held_item_storage = null
 	held_item_index = -1
