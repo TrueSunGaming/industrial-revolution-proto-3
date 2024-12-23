@@ -1,20 +1,22 @@
 extends Node
 
-signal held_item_changed
+signal held_item_changed(last_storage, last_index)
 
 var held_item_storage: StorageAccess:
 	set(val):
 		if held_item_storage == val: return
+		var last := held_item_storage
 		held_item_storage = val
 		
-		held_item_changed.emit()
+		held_item_changed.emit(last, held_item_index)
 
 var held_item_index: int:
 	set(val):
 		if held_item_index == val: return
+		var last := held_item_index
 		held_item_index = val
 		
-		held_item_changed.emit()
+		held_item_changed.emit(held_item_storage, last)
 
 var held_item: ResourceStack:
 	get:
