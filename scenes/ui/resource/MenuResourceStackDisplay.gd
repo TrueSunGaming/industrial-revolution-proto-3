@@ -1,6 +1,6 @@
 class_name MenuResourceStackDisplay extends PanelContainer
 
-signal grabbed(event)
+signal grabbed
 
 @export var stack: ResourceStack:
 	set(val):
@@ -10,6 +10,6 @@ signal grabbed(event)
 
 func _gui_input(event: InputEvent) -> void:
 	if not global.held_item and event is InputEventMouseButton and event.is_released():
-		grabbed.emit(event)
+		grabbed.emit()
 		(event as InputEventMouseButton).canceled = true
 		print("grabbed")

@@ -43,8 +43,7 @@ func fill_empty() -> void:
 func add_display(stack: ResourceStack) -> void:
 	var node := resource_display.instantiate()
 	node.stack = stack
-	
-	node.grabbed.connect(func (event: InputEvent): grab_item(get_children().find(node)))
+	node.grabbed.connect(func (): grab_item(get_children().find(node)))
 	
 	add_child(node)
 
