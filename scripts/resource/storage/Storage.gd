@@ -138,5 +138,10 @@ func can_hold_product(recipe_id: StringName, count := 1) -> bool:
 	return true
 
 func can_craft(recipe_id: StringName, count := 1) -> bool:
-	assert(false, "StorageAccess.can_craft is abstract.")
+	if not can_hold_product(recipe_id, count): return false
+	
+	for i in Recipe.get_loaded(recipe_id).ingredients:
+		if i.resource_id not in counts: return false
+		if counts[i.resource_id] < i.quantity * count: return false
+	
 	return false
