@@ -137,8 +137,8 @@ func can_hold_product(recipe_id: StringName, count := 1) -> bool:
 	
 	return true
 
-func can_craft(recipe_id: StringName, count := 1) -> bool:
-	if not can_hold_product(recipe_id, count): return false
+func can_craft(recipe_id: StringName, count := 1, ignore_product := false) -> bool:
+	if not ignore_product and not can_hold_product(recipe_id, count): return false
 	
 	for i in Recipe.get_loaded(recipe_id).ingredients:
 		if i.resource_id not in counts: return false

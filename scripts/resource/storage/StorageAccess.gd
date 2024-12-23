@@ -29,6 +29,6 @@ func can_hold_product(recipe_id: StringName, count := 1) -> bool:
 	assert(false, "StorageAccess.can_hold_product is abstract.")
 	return false
 
-func can_craft(recipe_id: StringName, count := 1) -> bool:
+func can_craft(recipe_id: StringName, count := 1, ignore_product := false) -> bool:
 	assert(false, "StorageAccess.can_craft is abstract.")
 	return false
