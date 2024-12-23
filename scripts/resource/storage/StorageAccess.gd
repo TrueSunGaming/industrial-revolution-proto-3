@@ -20,3 +20,15 @@ func remove(stack: ResourceStack) -> int:
 func remove_index(idx: int) -> bool:
 	assert(false, "StorageAccess.remove_index is abstract.")
 	return false
+
+func craft(recipe_id: StringName, count := 1) -> bool:
+	assert(false, "StorageAccess.craft is abstract.")
+	return false
+
+func can_hold_product(recipe_id: StringName, count := 1) -> bool:
+	assert(false, "StorageAccess.can_hold_product is abstract.")
+	return false
+
+func can_craft(recipe_id: StringName, count := 1) -> bool:
+	assert(false, "StorageAccess.can_craft is abstract.")
+	return false
