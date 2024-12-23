@@ -97,7 +97,5 @@ func transfer_max_held_item() -> void:
 	pass
 
 func grab_item(idx: int) -> void:
-	prints("grabbing", idx)
 	global.held_item_storage = storage
 	global.held_item_index = idx
-	prints(global.held_item_storage, global.held_item_index, global.held_item)
