@@ -12,5 +12,5 @@ func update_empty_slots() -> void:
 	fill_empty_until = (storage as Storage).slots
 	update_panel_size()
 
-func update_panel_size() -> void:
+func update_panel_size(_idx := 0) -> void:
 	%PanelContainer.size = Vector2.ZERO
