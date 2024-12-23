@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://drqf0tkqp0fa4"]
+[gd_scene load_steps=8 format=3 uid="uid://drqf0tkqp0fa4"]
 
 [ext_resource type="Script" uid="uid://f0hlqm7grhro" path="res://scenes/ui/UI.gd" id="1_d2gw2"]
-[ext_resource type="Script" uid="uid://e3f1xsc4we2w" path="res://scenes/ui/resource/ResourceStackDisplay.gd" id="2_m01cm"]
 [ext_resource type="Script" uid="uid://bvyrfm4ni0bi6" path="res://scenes/ui/resource/HeldItem.gd" id="2_nnfdp"]
+[ext_resource type="Script" uid="uid://b3mhaduslwqgv" path="res://scripts/resource/ResourceStack.gd" id="3_nnfdp"]
 [ext_resource type="FontFile" uid="uid://o30xn84wnj74" path="res://fonts/Roboto-Regular.ttf" id="3_s64wo"]
+[ext_resource type="Script" uid="uid://brhc4jfo5pptn" path="res://scenes/ui/resource/storage/StorageDisplay.gd" id="5_j3nm3"]
+[ext_resource type="Script" uid="uid://cfoq042u5rgpj" path="res://scripts/resource/storage/Storage.gd" id="7_p6rkd"]
+
+[sub_resource type="Resource" id="Resource_bcuxr"]
+script = ExtResource("7_p6rkd")
+allow_solids = true
+allow_fluids = true
+remove_empty = true
+slots = -1
+content = Array[ExtResource("3_nnfdp")]([])
+metadata/_custom_type_script = ExtResource("7_p6rkd")
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_d2gw2")
@@ -11,11 +22,21 @@ metadata/_custom_type_script = ExtResource("1_d2gw2")
 
 [node name="HeldItem" type="TextureRect" parent="."]
 visible = false
+z_index = 1
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_nnfdp")
 quantity_font = ExtResource("3_s64wo")
-metadata/_custom_type_script = ExtResource("2_m01cm")
+metadata/_custom_type_script = ExtResource("2_nnfdp")
+
+[node name="StorageDisplay" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 5
+script = ExtResource("5_j3nm3")
+storage = SubResource("Resource_bcuxr")
+fill_full_line = true
+metadata/_custom_type_script = ExtResource("5_j3nm3")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

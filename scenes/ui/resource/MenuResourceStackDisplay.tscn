@@ -16,6 +16,7 @@ offset_right = 38.0
 offset_bottom = 38.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_lkutk")
 script = ExtResource("1_n7wjf")
 metadata/_custom_type_script = ExtResource("1_n7wjf")
