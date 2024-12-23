@@ -89,3 +89,12 @@ func remove_index(idx: int) -> bool:
 	removed.emit(idx)
 	
 	return true
+
+func craft(recipe_id: StringName, count := 1) -> bool:
+	if not can_craft(recipe_id, count): return false
+	
+	var recipe := Recipe.get_loaded(recipe_id)
+	for i in recipe.ingredients: remove(ResourceStack.new(i.resource_id, i.quantity * count, true))
+	for i in recipe.products: add(ResourceStack.new(i.resource_id, i.quantity * count, true))
+	
+	return true
