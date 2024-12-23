@@ -37,6 +37,9 @@ var fill_empty_target: int:
 		
 		return columns * ceili(maxf((storage.get_content() if storage else []).size() + 1, fill_empty_until) / columns)
 
+func _ready() -> void:
+	global.held_item_changed.connect(on_held_item_changed)
+
 func fill_empty() -> void:
 	while fill_empty_target > get_child_count(): add_display(null)
 
@@ -99,3 +102,10 @@ func transfer_max_held_item() -> void:
 func grab_item(idx: int) -> void:
 	global.held_item_storage = storage
 	global.held_item_index = idx
+
+func on_held_item_changed(last_storage: StorageAccess, last_index: int) -> void:
+	if last_storage == storage:
+		(get_children()[last_index] as MenuResourceStackDisplay).in_hand = false
+	
+	if global.held_item_storage == storage:
+		(get_children()[global.held_item_index] as MenuResourceStackDisplay).in_hand = true

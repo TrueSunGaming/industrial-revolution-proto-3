@@ -1,6 +1,7 @@
 extends StorageDisplay
 
 func _ready() -> void:
+	super._ready()
 	storage = refs.player.inventory
 	storage.appended.connect(update_panel_size)
 	storage.removed.connect(update_panel_size)

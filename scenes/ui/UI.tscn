@@ -23,6 +23,7 @@ metadata/_custom_type_script = ExtResource("1_d2gw2")
 [node name="HeldItem" type="TextureRect" parent="."]
 visible = false
 z_index = 1
+custom_minimum_size = Vector2(32, 32)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_nnfdp")

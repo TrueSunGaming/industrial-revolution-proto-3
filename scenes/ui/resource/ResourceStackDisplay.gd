@@ -1,5 +1,7 @@
 class_name ResourceStackDisplay extends TextureRect
 
+const hand: CompressedTexture2D = preload("res://scenes/ui/resource/storage/hand.svg")
+
 @export var quantity_font: Font
 @export var quantity_size := 16
 @export var quantity_color := Color.WHITE
@@ -16,11 +18,23 @@ class_name ResourceStackDisplay extends TextureRect
 		if stack and stack.resource_data and stack.resource_data.texture:
 			var img := stack.resource_data.texture.get_image()
 			img.resize(32, 32, Image.INTERPOLATE_NEAREST)
-			texture = ImageTexture.create_from_image(img)
-			size = Vector2.ZERO
+			resource_texture = ImageTexture.create_from_image(img)
 		
 		visible = stack != null
 		queue_redraw()
+
+@export var in_hand: bool:
+	set(val):
+		in_hand = val
+		texture = hand if in_hand else resource_texture
+		size = Vector2.ZERO
+
+var resource_texture: ImageTexture:
+	set(val):
+		if resource_texture == val: return
+		resource_texture = val
+		
+		in_hand = in_hand
 
 func _draw() -> void:
 	if not stack: return
