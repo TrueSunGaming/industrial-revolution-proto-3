@@ -11,6 +11,7 @@ static var loaded: Dictionary[StringName, Tile]
 
 @export var atlas_id: int
 @export var name: String
+@export var entity_class: Script
 
 static func get_loaded(id: StringName) -> Tile:
 	return loaded.get(id)
