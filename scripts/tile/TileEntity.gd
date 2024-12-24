@@ -4,3 +4,6 @@ class_name TileEntity extends Resource
 
 func tick(delta: float) -> void:
 	pass
+
+func create_data() -> Resource:
+	return null
