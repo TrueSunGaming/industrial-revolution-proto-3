@@ -18,7 +18,7 @@ static var atlas_id_map: Dictionary[int, Tile]
 		atlas_id_map[atlas_id] = self
 
 @export var name: String
-@export var entity_class: Script
+@export var entity_class: GDScript
 
 static func get_loaded(id: StringName) -> Tile:
 	return loaded.get(id)
