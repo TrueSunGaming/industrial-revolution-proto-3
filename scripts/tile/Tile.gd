@@ -25,3 +25,6 @@ static func get_loaded(id: StringName) -> Tile:
 
 static func get_atlas_id(id: StringName) -> int:
 	return get_loaded(id).atlas_id
+
+static func get_from_atlas_id(id: int) -> Tile:
+	return atlas_id_map.get(id)
