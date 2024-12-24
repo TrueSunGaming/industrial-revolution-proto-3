@@ -1,6 +1,7 @@
 class_name Tile extends Resource
 
 static var loaded: Dictionary[StringName, Tile]
+static var atlas_id_map: Dictionary[int, Tile]
 
 @export var id: StringName:
 	set(val):
@@ -9,7 +10,13 @@ static var loaded: Dictionary[StringName, Tile]
 		id = val
 		loaded[id] = self
 
-@export var atlas_id: int
+@export var atlas_id: int:
+	set(val):
+		if atlas_id == val: return
+		if atlas_id in atlas_id_map: atlas_id_map.erase(atlas_id)
+		atlas_id = val
+		atlas_id_map[atlas_id] = self
+
 @export var name: String
 @export var entity_class: Script
 
