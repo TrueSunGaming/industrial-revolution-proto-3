@@ -67,5 +67,5 @@ func set_if_not_occupied(pos: Vector2i, id: int, centered := false) -> bool:
 	
 	return false
 
-func load_save(loaded_data: Dictionary[Vector2i, int]) -> void:
-	for i in loaded_data.keys(): set_large_tile(i, loaded_data[i])
+func load_save(loaded_data: SaveData) -> void:
+	for i in loaded_data.factory_data.keys(): set_large_tile(i, loaded_data.factory_data[i])

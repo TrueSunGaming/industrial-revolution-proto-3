@@ -1,9 +1,10 @@
 class_name Factory extends Node2D
 
 func _ready() -> void:
-	$LargeTileMap.set_large_tile(Vector2i.ZERO, 0)
+	$EntityTileMap.place_tile(Vector2i.ZERO, "assembler_1")
 	
-	$LargeTileMap.load_save(refs.save.factory_data)
+	$EntityTileMap.load_save(refs.save)
 
 func save() -> void:
-	refs.save.factory_data = $LargeTileMap.save_data
+	refs.save.factory_data = $EntityTileMap.save_data
+	refs.save.factory_entity_data = $EntityTileMap.entity_data

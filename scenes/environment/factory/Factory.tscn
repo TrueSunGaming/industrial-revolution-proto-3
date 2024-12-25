@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b0p4p5246fir8" path="res://scenes/environment/factory/Factory.gd" id="1_66b7p"]
 [ext_resource type="TileSet" uid="uid://vmcuko3hbw3y" path="res://scenes/environment/factory/tiles/tileset.tres" id="1_y8wbq"]
-[ext_resource type="Script" uid="uid://caa37c2ydxkob" path="res://scripts/tile/LargeTileMap.gd" id="2_66b7p"]
 [ext_resource type="Script" uid="uid://co0ur7wkw7tt1" path="res://scripts/effects/TiledBackground.gd" id="2_242ce"]
 [ext_resource type="Texture2D" uid="uid://cudg5hxs6gg0t" path="res://scenes/environment/factory/metal_tile.svg" id="3_iqf15"]
 [ext_resource type="PackedScene" uid="uid://dlciscixwpo2n" path="res://scenes/hover-indicator/HoverIndicator.tscn" id="4_2myly"]
+[ext_resource type="Script" uid="uid://crvviyhlvaxv8" path="res://scripts/tile/EntityTileMap.gd" id="5_iqf15"]
 
 [node name="Factory" type="Node2D"]
 script = ExtResource("1_66b7p")
@@ -19,9 +19,9 @@ metadata/_custom_type_script = ExtResource("2_242ce")
 [node name="Sprite2D" type="Sprite2D" parent="TiledBackground"]
 texture = ExtResource("3_iqf15")
 
-[node name="LargeTileMap" type="TileMapLayer" parent="."]
+[node name="EntityTileMap" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_y8wbq")
-script = ExtResource("2_66b7p")
-metadata/_custom_type_script = ExtResource("2_66b7p")
+script = ExtResource("5_iqf15")
+metadata/_custom_type_script = ExtResource("5_iqf15")
 
-[node name="HoverIndicator" parent="LargeTileMap" instance=ExtResource("4_2myly")]
+[node name="HoverIndicator" parent="EntityTileMap" instance=ExtResource("4_2myly")]

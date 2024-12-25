@@ -10,7 +10,7 @@ static var atlas_id_map: Dictionary[int, Tile]
 		id = val
 		loaded[id] = self
 
-@export var atlas_id: int:
+@export var atlas_id := -1:
 	set(val):
 		if atlas_id == val: return
 		if atlas_id in atlas_id_map: atlas_id_map.erase(atlas_id)

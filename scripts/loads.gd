@@ -12,6 +12,11 @@ const resources := [
 	"tiles/transformers/assemblers/assembler_1"
 ]
 
+const tiles := [
+	"transformers/assemblers/assembler_1"
+]
+
 func _init() -> void:
 	for i in environments: load("res://scenes/environment/" + i + "/" + i + ".tres")
 	for i in resources: load("res://scripts/resource/resources/" + i + ".tres")
+	for i in tiles: load("res://scripts/tile/tiles/" + i + ".tres")

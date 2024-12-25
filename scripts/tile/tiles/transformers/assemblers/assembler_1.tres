@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=2 format=3 uid="uid://brc4roh24w0bq"]
+
+[ext_resource type="Script" uid="uid://uk0o5l0xalnt" path="res://scripts/tile/Tile.gd" id="1_hqrlm"]
+
+[resource]
+script = ExtResource("1_hqrlm")
+id = &"assembler_1"
+atlas_id = 0
+name = "Assembling Machine MK1"
+metadata/_custom_type_script = ExtResource("1_hqrlm")
