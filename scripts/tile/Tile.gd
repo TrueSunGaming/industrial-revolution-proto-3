@@ -28,3 +28,6 @@ static func get_atlas_id(id: StringName) -> int:
 
 static func get_from_atlas_id(id: int) -> Tile:
 	return atlas_id_map.get(id)
+
+static func get_tile_id(atlas_id: int) -> StringName:
+	return get_from_atlas_id(atlas_id).id
