@@ -3,6 +3,10 @@ class_name TileEntity extends RefCounted
 var map: EntityTileMap
 var origin: Vector2i
 
+var atlas_id: int:
+	get:
+		return map.get_cell_source_id(origin) if map else -1
+
 func tick(delta: float) -> void:
 	pass
 
