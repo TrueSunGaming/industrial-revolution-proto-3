@@ -6,6 +6,9 @@ var origin: Vector2i
 func tick(delta: float) -> void:
 	pass
 
+func click(event: InputEventMouseButton) -> void:
+	pass
+
 func create_data() -> Resource:
 	return null
 

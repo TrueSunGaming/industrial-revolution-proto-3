@@ -28,3 +28,12 @@ func load_save(loaded_data: SaveData) -> void:
 			false,
 			loaded_data.factory_entity_data.get(i)
 		)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_released(): return handle_click(event)
+
+func handle_click(event: InputEventMouseButton) -> void:
+	var pos := get_tile_origin(local_to_map(get_local_mouse_position()))
+	if not pos in entities: return
+	
+	entities[pos].click(event)
