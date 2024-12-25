@@ -1,9 +1,9 @@
 class_name EntityTileMap extends LargeTileMap
 
 var entities: Dictionary[Vector2i, TileEntity]
-var entity_data: Dictionary[Vector2i, Resource]
+var entity_data: Dictionary[Vector2i, TileEntityData]
 
-func place_tile(pos: Vector2i, id: StringName, centered := false, data_override: Resource = null) -> bool:
+func place_tile(pos: Vector2i, id: StringName, centered := false, data_override: TileEntityData = null) -> bool:
 	var tile := Tile.get_loaded(id)
 	
 	if not set_if_not_occupied(pos, tile.atlas_id, centered): return false

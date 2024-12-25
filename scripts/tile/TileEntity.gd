@@ -9,7 +9,7 @@ func tick(delta: float) -> void:
 func create_data() -> Resource:
 	return null
 
-func add_to_map(data_override: Resource = null) -> void:
+func add_to_map(data_override: TileEntityData = null) -> void:
 	if not map: return push_warning("Could not add TileEntity to map. map is null")
 	
 	map.entities[origin] = self
