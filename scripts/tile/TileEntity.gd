@@ -7,6 +7,10 @@ var atlas_id: int:
 	get:
 		return map.get_cell_source_id(origin) if map else -1
 
+var tile: Tile:
+	get:
+		return Tile.get_from_atlas_id(atlas_id)
+
 func tick(delta: float) -> void:
 	pass
 
