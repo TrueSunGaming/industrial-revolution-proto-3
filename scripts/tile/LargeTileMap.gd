@@ -60,8 +60,9 @@ func can_set_id(pos: Vector2i, id: int, centered := false) -> bool:
 
 func set_if_not_occupied(pos: Vector2i, id: int, centered := false) -> bool:
 	var size := get_tile_size(id)
+	if centered: pos -= size / 2
 	
-	if can_set(pos, size, centered):
+	if can_set(pos, size):
 		_set_large_tile_precomputed(pos, id, size)
 		return true
 	
