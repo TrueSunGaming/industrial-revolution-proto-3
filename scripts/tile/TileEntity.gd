@@ -1,15 +1,30 @@
 class_name TileEntity extends RefCounted
 
-var map: EntityTileMap
-var origin: Vector2i
+var map: EntityTileMap:
+	set(val):
+		if map == val: return
+		map = val
+		_update_atlas_id()
 
-var atlas_id: int:
-	get:
-		return map.get_cell_source_id(origin) if map else -1
+var origin: Vector2i:
+	set(val):
+		if origin == val: return
+		origin = val
+		_update_atlas_id()
 
-var tile: Tile:
-	get:
-		return Tile.get_from_atlas_id(atlas_id)
+var atlas_id: int
+var tile: Tile
+
+func _update_atlas_id() -> void:
+	var old := atlas_id
+	atlas_id = map.get_cell_source_id(origin) if map else -1
+	if atlas_id != old: _update_tile()
+
+func _update_tile() -> void:
+	tile = Tile.get_from_atlas_id(atlas_id)
+
+func _init() -> void:
+	_update_atlas_id()
 
 func tick(delta: float) -> void:
 	pass
