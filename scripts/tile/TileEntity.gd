@@ -49,5 +49,5 @@ func add_to_map(data_override: TileEntityData = null) -> void:
 			var pos := Vector2i(x, y)
 			if pos == Vector2i.ZERO: continue
 			
-			map.entities.erase(pos)
-			map.entity_data.erase(pos)
+			map.entities.erase(origin + pos)
+			map.entity_data.erase(origin + pos)
