@@ -17,7 +17,7 @@ func tick(delta: float) -> void:
 func click(event: InputEventMouseButton) -> void:
 	pass
 
-func create_data() -> Resource:
+func create_data() -> TileEntityData:
 	return null
 
 func add_to_map(data_override: TileEntityData = null) -> void:
