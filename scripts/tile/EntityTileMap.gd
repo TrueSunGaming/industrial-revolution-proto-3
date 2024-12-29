@@ -36,7 +36,9 @@ func handle_click(event: InputEventMouseButton) -> void:
 	var pos := get_tile_origin(local_to_map(get_local_mouse_position()))
 	if not pos in entities: return attempt_place(pos)
 	
-	entities[pos].click(event)
+	match event.button_index:
+		MOUSE_BUTTON_LEFT:
+			entities[pos].click(event)
 
 func attempt_place(pos: Vector2i) -> bool:
 	if not global.held_item: return false
