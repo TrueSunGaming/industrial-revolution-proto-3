@@ -42,12 +42,4 @@ func add_to_map(data_override: TileEntityData = null) -> void:
 	var entity_data := data_override if data_override else create_data()
 	if entity_data: map.entity_data[origin] = entity_data
 	
-	var size := map.get_tile_size(map.get_cell_source_id(origin))
-	
-	for x in size.x:
-		for y in size.y:
-			var pos := Vector2i(x, y)
-			if pos == Vector2i.ZERO: continue
-			
-			map.entities.erase(origin + pos)
-			map.entity_data.erase(origin + pos)
+	map.clear_entity(origin, map.get_tile_size(map.get_cell_source_id(origin)))

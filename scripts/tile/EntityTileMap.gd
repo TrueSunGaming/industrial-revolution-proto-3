@@ -20,6 +20,15 @@ func place_tile(pos: Vector2i, id: StringName, centered := false, data_override:
 	
 	return true
 
+func clear_entity(pos: Vector2i, size: Vector2i) -> void:
+	for x in size.x:
+		for y in size.y:
+			var offset := Vector2i(x, y)
+			if offset == Vector2i.ZERO: continue
+			
+			entities.erase(pos + offset)
+			entity_data.erase(pos + offset)
+
 func load_save(loaded_data: SaveData) -> void:
 	for i in loaded_data.factory_data.keys():
 		place_tile(
