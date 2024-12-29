@@ -22,6 +22,6 @@ func choose(count := 1) -> Array[StringName]:
 	var res: Array[StringName] = []
 	for i in count:
 		var random := randf_range(0, cumulative_weights.back())
-		res.push_back(values[global.find_largest_up_to(cumulative_weights, random)])
+		res.push_back(values[global.find_next_after(cumulative_weights, random)])
 	
 	return res

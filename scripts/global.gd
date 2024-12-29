@@ -72,9 +72,9 @@ func transfer_held_item(to: StorageAccess) -> void:
 	held_item_storage = null
 	held_item_index = -1
 
-static func find_largest_up_to(arr: Array[float], limit: float) -> int:
+static func find_next_after(arr: Array[float], limit: float) -> int:
 	if arr.is_empty(): return -1
-	if limit > arr.back(): return arr.size() - 1
+	if limit > arr.back(): return -1
 	
 	var left := 0
 	var right := arr.size() - 1
@@ -86,4 +86,4 @@ static func find_largest_up_to(arr: Array[float], limit: float) -> int:
 		
 		mid = (left + right + 1) / 2
 	
-	return left if arr[left] < limit else -1
+	return right if arr[left] < limit else left
