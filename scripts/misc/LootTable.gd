@@ -16,7 +16,7 @@ func choose(count := 1) -> Array[StringName]:
 	
 	var index := 0
 	for i in weights.values():
-		cumulative_weights[index] = i + (cumulative_weights.back() if cumulative_weights.size() > 0 else 0)
+		cumulative_weights[index] = i + (cumulative_weights[index - 1] if index > 0 else 0)
 		index += 1
 	
 	var res: Array[StringName] = []
