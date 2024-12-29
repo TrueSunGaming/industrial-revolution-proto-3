@@ -41,5 +41,3 @@ func add_to_map(data_override: TileEntityData = null) -> void:
 	map.entities[origin] = self
 	var entity_data := data_override if data_override else create_data()
 	if entity_data: map.entity_data[origin] = entity_data
-	
-	map.clear_entity(origin, map.get_tile_size(map.get_cell_source_id(origin)))

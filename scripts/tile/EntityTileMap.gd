@@ -8,13 +8,16 @@ func place_tile(pos: Vector2i, id: StringName, centered := false, data_override:
 	
 	if not set_if_not_occupied(pos, tile.atlas_id, centered): return false
 	
+	var origin := get_tile_origin(pos)
+	clear_entity(origin, get_tile_size(tile.atlas_id))
+	
 	if not tile.entity_class: return true
 	var entity: Variant = tile.entity_class.new()
 	if entity is not TileEntity:
 		assert(false, "Tile entity_class is not a TileEntity")
 		return true
 	
-	(entity as TileEntity).origin = get_tile_origin(pos)
+	(entity as TileEntity).origin = origin
 	(entity as TileEntity).map = self
 	(entity as TileEntity).add_to_map(data_override)
 	
