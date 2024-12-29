@@ -43,10 +43,10 @@ func save_and_quit() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST: save_and_quit()
 
-func safe_disconnect(sig: Signal, fn: Callable) -> void:
+static func safe_disconnect(sig: Signal, fn: Callable) -> void:
 	if sig.is_connected(fn): sig.disconnect(fn)
 
-func reconnect(sig: Callable, from: Object, to: Object, sig_name: String) -> void:
+static func reconnect(sig: Callable, from: Object, to: Object, sig_name: String) -> void:
 	if from and sig_name in from and from[sig_name] is Signal:
 		safe_disconnect(from[sig_name], sig)
 	
