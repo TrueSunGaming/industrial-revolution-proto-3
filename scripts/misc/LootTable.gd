@@ -2,6 +2,9 @@ class_name LootTable extends Resource
 
 @export var weights: Dictionary[StringName, float]
 
+func _init(value_weights: Dictionary[StringName, float] = {}) -> void:
+	weights = value_weights
+
 func choose(count := 1) -> Array[StringName]:
 	if weights.is_empty():
 		push_error("LootTable weights is empty")
