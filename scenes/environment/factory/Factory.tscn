@@ -12,6 +12,7 @@ script = ExtResource("1_66b7p")
 metadata/_custom_type_script = ExtResource("1_66b7p")
 
 [node name="TiledBackground" type="Parallax2D" parent="." node_paths=PackedStringArray("sprite")]
+repeat_times = 2
 script = ExtResource("2_242ce")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = ExtResource("2_242ce")
