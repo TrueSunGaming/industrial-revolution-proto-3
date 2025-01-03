@@ -4,16 +4,21 @@ var map: EntityTileMap:
 	set(val):
 		if map == val: return
 		map = val
-		_update_atlas_id()
+		_update_data()
 
 var origin: Vector2i:
 	set(val):
 		if origin == val: return
 		origin = val
-		_update_atlas_id()
+		_update_data()
 
 var atlas_id: int
 var tile: Tile
+var entity_data: TileEntityData
+
+func _update_data() -> void:
+	_update_atlas_id()
+	_update_entity_data()
 
 func _update_atlas_id() -> void:
 	var old := atlas_id
@@ -22,6 +27,9 @@ func _update_atlas_id() -> void:
 
 func _update_tile() -> void:
 	tile = Tile.get_from_atlas_id(atlas_id)
+
+func _update_entity_data() -> void:
+	entity_data = map.entity_data.get(origin) if map else null
 
 func _init() -> void:
 	_update_atlas_id()
