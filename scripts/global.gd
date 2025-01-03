@@ -87,3 +87,6 @@ static func find_next_after(arr: Array[float], limit: float) -> int:
 		mid = (left + right + 1) / 2
 	
 	return right if arr[left] < limit else left
+
+static func is_mouse_button(event: InputEvent, button: MouseButton) -> bool:
+	return event is InputEventMouseButton and (event as InputEventMouseButton).button_index == button
