@@ -1,5 +1,7 @@
 class_name EntityTileMap extends LargeTileMap
 
+var _placing := false
+
 var entities: Dictionary[Vector2i, TileEntity]
 var entity_data: Dictionary[Vector2i, TileEntityData]
 
@@ -41,16 +43,28 @@ func load_save(loaded_data: SaveData) -> void:
 			loaded_data.factory_entity_data.get(i)
 		)
 
+func _input(event: InputEvent) -> void:
+	if _should_end_place(event): _placing = false
+
 func _unhandled_input(event: InputEvent) -> void:
+	if _should_start_place(event): _placing = true
 	if event is InputEventMouseButton and event.is_released(): return handle_click(event)
 
+func _process(delta: float) -> void:
+	if _placing: attempt_place(local_to_map(get_local_mouse_position()))
+
+static func _should_start_place(event: InputEvent) -> bool:
+	return global.is_mouse_button(event, MOUSE_BUTTON_LEFT) and event.is_pressed()
+
+static func _should_end_place(event: InputEvent) -> bool:
+	return global.is_mouse_button(event, MOUSE_BUTTON_LEFT) and event.is_released()
+
 func handle_click(event: InputEventMouseButton) -> void:
-	var pos := get_tile_origin(local_to_map(get_local_mouse_position()))
-	if not pos in entities: return attempt_place(pos)
+	var pos := get_hovered_tile_origin()
 	
 	match event.button_index:
 		MOUSE_BUTTON_LEFT:
-			entities[pos].click(event)
+			if pos in entities: entities[pos].click(event)
 
 func attempt_place(pos: Vector2i) -> bool:
 	if not global.held_item: return false
@@ -59,10 +73,11 @@ func attempt_place(pos: Vector2i) -> bool:
 	if global.held_item.resource_data.tile not in Tile.loaded: return false
 	
 	var res := place_tile(pos, global.held_item.resource_data.tile, true)
+	if not res: return false
 	
 	global.held_item.quantity -= 1
 	if global.held_item.quantity <= 0:
 		refs.player.inventory.remove_index(global.held_item_index)
 		global.return_held_item()
 	
-	return res
+	return true
